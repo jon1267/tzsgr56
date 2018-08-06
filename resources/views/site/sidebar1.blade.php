@@ -23,7 +23,7 @@
                     @foreach($catsChunk as $category)
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#">{{ $category->title }}</a>
+                                <a href="{{ route('index.blogCategory', [$category]) }}">{{ $category->title }}</a>
                             </li>
                         </ul>
                     @endforeach

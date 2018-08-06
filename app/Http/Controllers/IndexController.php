@@ -50,5 +50,33 @@ class IndexController extends Controller
 
     }
 
+    /**
+     * если в стр. 66: $articles = $category->articles; и в модели Category 1xMany
+     * прописана как обычно(return $this->hasMany(Article::class);) то лезет ошибка: -
+     * при пагинации в blog_home.blade - дает ошибку (в стр.35) на {{$articles->links()}}
+     * думать !!! Решается так: к связи 1xMany (в Category) прицепляется пагинация,
+     * return $this->hasMany(Article::class)->paginate(1); но и связь вызывается
+     * как ф-ция: $articles = $category->articles(); (а не динамич св-во)
+     *
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function category(Category $category)
+    {
+        $articles = $category->articles();
+        //dd($articles);
+        $categories = Category::all();
+
+        $template = 'site.blog_home';
+        $sidebar  = 'site.sidebar1';
+
+        return view('site.index', [
+            'articles' => $articles,
+            'categories' => $categories,
+            'template' => $template,
+            'sidebar'  => $sidebar
+        ]);
+    }
+
 
 }

@@ -12,7 +12,8 @@
         <div class="card mb-4">
             <img class="card-img-top" src="{{ asset('blog/img/'.$article->img) }}" alt="Card image cap">
             <div class="card-body">
-                <h2 class="card-title">{{ $article->title }}</h2>
+                <h2 class="card-title">{{ $article->title }} <small class="h5 float-right">category: &nbsp;&nbsp; <span class="badge badge-pill badge-secondary ">{{ $article->category->title }}</span></small></h2>
+
                 <p class="card-text">{{ $article->description }} </p>
                 <a href="{{ route('index.blogSingle', ['id' => $article->id]) }}" class="btn btn-primary">Read More &rarr;</a>
                 <a href="{{ route('index.blogSingle', ['id' => $article->id]) }}" class="btn btn-success ml-2">Comments  <span class="badge badge-light ml-1"> {{ count($article->comments) }} </span> </a>
@@ -24,7 +25,7 @@
         </div>
         @empty
             <div class="card mb-4">
-                <p class="card-text">No data for display</p>
+                <p class="h4 ml-2">No data for display</p>
             </div>
         @endforelse
 

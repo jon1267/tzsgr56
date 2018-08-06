@@ -11,7 +11,7 @@
         <div class="card mb-4">
             <img class="card-img-top" src="{{ asset('blog/img/'.$article->img) }}" alt="Card image cap">
             <div class="card-body">
-                <h2 class="card-title">{{ $article->title }}</h2>
+                <h2 class="card-title">{{ $article->title }} <small class="h5 float-right">category: &nbsp;&nbsp; <span class="badge badge-pill badge-secondary ">{{ $article->category->title }}</span></small></h2>
                 <p class="card-text">
                     {!! $article->text !!}
                 </p>
